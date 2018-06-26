@@ -1,0 +1,16 @@
+{
+   "token": "Put da token here",
+   "prefixes": [ "Prefix" , "2° Prefix" ], 
+   "dono": "Your ID",
+   "name": "Your Name(nick..who cares)",
+   "premium": [ "First Premium user" , "Second premium user" ],
+   "bot_name": "The Bot Tag",
+   "personal": "yes",
+   "discord_usertag": "Your Discord Tag",
+   "BIO": "Tell something about you!",
+   "BIO_AVATAR": "Put the classic anime avatar or any image here",
+   "Github_name": "Your Github name",
+   "Github_user_link": "Your Github profile link",
+   "Github_zerinhobot_fork_link": "no",
+   "custom_embed_color": "no"
+} 

@@ -1,0 +1,17 @@
+Você precisa editar umas coisinhas no config.json, caso você não entenda vou te explicar como funciona
+
+"token": "Token do bot",
+"prefixes": [ "primeira prefix", "segunda prefix" (você pode adicionar mais ],
+"dono": "Seu ID",
+"name": "Seu nome(nick ou qualquer coisa para você se indentificar)", (É usado para aparecer no console depois do Bot logar)
+"premium": [ "ID do usuario premium" , "ID de outro usuario premium" (você pode adicionar mais ],
+"bot_name": "Tag do BOT",
+"personal": "yes", ("yes" para caso queira que o bot só funcione para o "dono", "no" para funcionar para qualquer um),
+AS SEGUINTE OPÇÕES SÃO "PESSOAIS" VOCÊ PODE ESCOLHER ENTRE PREENCHER OU POR "no" 
+"discord_usertag": "user#tag", (Se não quiser ponha "no")
+"BIO": "Fale um pouco sobre você", (Se não quiser ponha "no")
+"BIO_AVATAR": "Ponha uma imagem que você queira que te represente aqui", (ou apenas ponha "no" no lugar)
+"Github_name: "O nome da sua conta do Github", (Se não quiser ponha "no")
+"Github_user_link": "Link para o seu perfil do github" (Se não quiser ponha "no")
+"Github_zerinhobot_fork_link": "Se você fez um FORK do repositorio do zerinho6 bot 3.0 ponha o link aqui", (Se não quiser ou não tiver ponha "no")
+"custom_embed_color": "Se você quiser um Hex customizado no embed que vai mostrar essas informações pessoais, ponha aqui" (Se não quiser ponha "no")

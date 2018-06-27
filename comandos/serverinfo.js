@@ -21,9 +21,9 @@ module.exports = {
 		message.guild.fetchMembers();
 		embed.addField( ":busts_in_silhouette: | Membros" , message.guild.memberCount , true );
 		embed.addField( ":crown: | Dono" , message.guild.owner.user.tag , true );
-        embed.addField( "<:discord:314003252830011395> | ID" , message.guild.id , true );
-        embed.addField( ":earth_americas: | Região do servidor" , message.guild.region , true );
-        embed.addField( ":calendar_spiral: | Criado em" , moment( message.guild.createdAt ) , true );
+                embed.addField( "<:discord:314003252830011395> | ID" , message.guild.id , true );
+                embed.addField( ":earth_americas: | Região do servidor" , message.guild.region , true );
+                embed.addField( ":calendar_spiral: | Criado em" , moment( message.guild.createdAt ) , true );
 		embed.addField( ":clipboard: | Quantidade de cargos" , message.guild.roles.size , true );
 		try {
 			message.channel.send( embed );

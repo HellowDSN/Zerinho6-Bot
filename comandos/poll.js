@@ -18,9 +18,9 @@ module.exports = {
 				message.channel.send( embed ).then( message => {
 					message.react( "👍" ).then( message.react( "👎" ) );
 				});
-		    } catch ( e ) {
+			} catch ( e ) {
 				k.special( message , message.member , e );
-		    }
+			}
 		} 
 	},
 	description: "Cria uma votação feita de reações.",

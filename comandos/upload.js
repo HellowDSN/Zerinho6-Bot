@@ -13,11 +13,11 @@ module.exports = {
 			if ( formatos.find( s => to_upload.first().url.endsWith( s ) ) ) {
 				imgur.uploadUrl( to_upload.first().url ).then(function ( json ) {
 					
-					embed.setAuthor( user.username , user.displayAvatarURL );
+				   embed.setAuthor( user.username , user.displayAvatarURL );
 				    embed.setColor( message.member.displayHexColor );
 				    embed.setImage( json.data.link );
-					embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-					embed.setThumbnail( "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Imgur_logo.svg/2000px-Imgur_logo.svg.png");
+				    embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+				    embed.setThumbnail( "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Imgur_logo.svg/2000px-Imgur_logo.svg.png");
 				    embed.setTitle( ":frame_photo: | A imagem foi enviada com sucesso" );
 				    embed.addField( ":link: Link", json.data.link );
 				    message.channel.send( embed );

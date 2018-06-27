@@ -1,12 +1,12 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot, message , args ) => {
-		if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
-		var fs = require( "fs" ),
-		k = require( "../comandos/avatar.js" ),
+	if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+	var fs = require( "fs" ),
+	k = require( "../comandos/avatar.js" ),
         files = fs.readdirSync( "./comandos/" ),
         Discord = require( "discord.js" ),
-		user = message.author,
+	user = message.author,
         embed = new Discord.RichEmbed();
 	
 		if ( args[ 0 ] ) {
@@ -24,7 +24,7 @@ module.exports = {
 					    } catch ( e ) {
 						    k.special( message , message.member , e );
 					    }
-					})
+					});
 				} else {
 					message.reply( "Você não é um PBU(Premium Bot User)" );
 				}

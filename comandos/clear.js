@@ -1,5 +1,5 @@
 var config = require( "../config.json" );
-modele.exports = {
+module.exports = {
 	run: ( bot , message , args ) => {
 	if( !message.member.hasPermission( "MANAGE_MESSAGES" ) ) return message.reply( "Você precisa da permissão de gerenciar mensagens para executar esse comando." );
         if( !message.channel.permissionsFor( bot.user.id ).has( "MANAGE_MESSAGES" ) ) return message.reply( "Eu preciso da permissão de gerenciar mensagens para executar esse comando." );

@@ -35,4 +35,4 @@ module.exports = {
     photo: "https://i.imgur.com/4pQAEHl.png",
     permission: "Nenhuma informação necessaria",
     use: ` ${ config.prefixes[ 0 ] }serverinfo`
-}
+};

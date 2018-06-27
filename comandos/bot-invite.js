@@ -10,12 +10,12 @@ module.exports = {
 		if ( args[ 0 ] ) {
 			if ( !isNaN( parseInt( args[ 0 ] ) ) ) { 
 			    if ( args[ 0 ].length === 18 ) {
-					embed.setAuthor( user.username , user.displayAvatarURL );
-		            embed.setTimestamp();
-		            embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-		            embed.setColor( message.member.displayHexColor );
-		            embed.addField( ":link: | Link" , "https://discordapp.com/oauth2/authorize?&client_id=" + args[ 0 ] + "&scope=bot" );
-                    try {
+				    embed.setAuthor( user.username , user.displayAvatarURL );
+		                    embed.setTimestamp();
+		                    embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+		                    embed.setColor( message.member.displayHexColor );
+		                    embed.addField( ":link: | Link" , "https://discordapp.com/oauth2/authorize?&client_id=" + args[ 0 ] + "&scope=bot" );
+				        try {
 						message.channel.send( embed );
 					} catch ( e ) {
 						k.special( message , message.member , e );

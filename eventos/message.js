@@ -1,11 +1,11 @@
 /* global Set */
+var talkedRecently = new Set();
 exports.run = function( message ) {
 	try {
-	    var talkedRecently = new Set(),
-	    fs = require( "fs" ),
-	    config = require( "../config.json" ),
-	    Discord = require( "discord.js" ),
-	    bot = new Discord.Client();
+		var fs = require( "fs" ),
+		config = require( "../config.json" ),
+		Discord = require( "discord.js" ),
+		bot = new Discord.Client();
 		  
 		if ( message.channel.type === "dm" || message.author.bot || !message.channel.permissionsFor( this.user.id ).has( "SEND_MESSAGES" ) ) {
 			return;
@@ -19,19 +19,19 @@ exports.run = function( message ) {
 			return message.content.toLowerCase().includes( name );
 		}; 
 		
-	        message.prefix = config.prefixes.find( ( p ) => startsWith( p ) ) || null; // Obrigado tsu
-                var args = message.content.split( " " );
+		message.prefix = config.prefixes.find( ( p ) => startsWith( p ) ) || null; // Obrigado tsu
+		var args = message.content.split( " " );
 		  
 		if ( message.prefix && args[ 0 ] ) {
 			if ( talkedRecently.has( message.author.id ) ) return;
-			talkedRecently.add( message.author.id )
+			talkedRecently.add( message.author.id );
 			setTimeout( () => {
 				talkedRecently.delete( message.author.id );
 			}, 6000);
 			  
 			var name = args[ 0 ].slice( message.prefix.length ).toLowerCase(),
 			Comands = fs.readdirSync( "./comandos" ).map( ( c ) => c.replace( /.js/gi, "" ).toLowerCase() ),
-		        Command = Comands.includes( name ) ? require( `../comandos/${ name }.js` ) : null;
+			Command = Comands.includes( name ) ? require( `../comandos/${ name }.js` ) : null;
 			  
 			if ( Command ) {
 				if ( config.personal === "yes" && !config.premium.find( s => message.author.id === s ) ) {
@@ -43,6 +43,6 @@ exports.run = function( message ) {
 			};
 		};
 	} catch( e ) {
-	    console.error( e );
+		console.error( e );
 	};
 };

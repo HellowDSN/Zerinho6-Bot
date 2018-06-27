@@ -1,6 +1,6 @@
 {
-  "name": "creation",
-  "version": "1.0.0",
+  "name": "Zerinho6 3.0",
+  "version": "3.0.0",
   "description": "Zerinho6 Bot V3.0",
   "main": "bot.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",
-    "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.3.2",
     "fs": "0.0.1-security",
     "imgur": "^0.2.1",

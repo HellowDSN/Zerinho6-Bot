@@ -24,10 +24,10 @@ exports.run = function( message ) {
 		  
 		if ( message.prefix && args[ 0 ] ) {
 			if ( talkedRecently.has( message.author.id ) ) return;
-			talkedRecently.add( message.author.id );
-	        setTimeout( () => {
+			talkedRecently.add( message.author.id )
+			setTimeout( () => {
 				talkedRecently.delete( message.author.id );
-	        }, 6000);
+			}, 6000);
 			  
 			var name = args[ 0 ].slice( message.prefix.length ).toLowerCase(),
 			Comands = fs.readdirSync( "./comandos" ).map( ( c ) => c.replace( /.js/gi, "" ).toLowerCase() ),

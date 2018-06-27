@@ -11,11 +11,10 @@ module.exports = {
 								//Jezz, Odeio usar essa quantidade de "if" ~Zerinho6
 								try {
 									message.guild.member( mencionado ).kick( mencionado );
-                                    message.reply( "O usuario foi kickado com sucesso." );
-                                    console.log( "\n" + message.author.tag + " usou o " + config.bot_name + " para utilizar o serverinfo.js no servidor: " + message.guild.name + "\nMembros: " + message.guild.memberCount + "\nID: " + message.guild.id + "\nDono: " + message.guild.owner.user.tag + "(" + message.guild.owner.user.id + ")" + "\nRegião: " + message.guild.region );									
+                                                                        message.reply( "O usuario foi kickado com sucesso." );									
 								} catch ( e ) {
 									var k = require( "../comandos/avatar.js" );
-				                    k.special( message , message.member , e );
+									k.special( message , message.member , e );
 								}
 							} else {
 								message.reply( "Você não pode kickar o dono do servidor, ninguém pode. :joy: :ok_hand:" );

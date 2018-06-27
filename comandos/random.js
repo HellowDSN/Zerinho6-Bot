@@ -5,12 +5,12 @@ module.exports = {
 		function int_or_float( type, max ) {
 			if ( type === "int" ) {
 				return "Resultado: " + parseInt( Math.random() * max );
-		    }
+			}
 			if ( type === "float" ) {
 				var transformed = parseFloat( max );
 				return "Resultado: " + Math.random() * transformed;
 			}
-	    };
+		};
 		
 		var k = require( "../comandos/avatar.js" );
 		if ( args[ 0 ] && args[ 1 ] ) {
@@ -19,7 +19,7 @@ module.exports = {
 					try {
 						message.channel.send( int_or_float( args[ 1 ] , args[ 0 ] ) );
 					} catch ( e ) {
-				        k.special( message , message.member , e );
+						k.special( message , message.member , e );
 					}
 				} else {
 					message.reply( "As unicas opções são 'int' ou 'float'." );
@@ -31,9 +31,9 @@ module.exports = {
 			if ( !isNaN( args[ 0 ] ) ) {
 				try {
 					message.reply( "Só lembrando, você pode definir se quer o resultado em Int ou Float, como você não definiu o resultado ele vai ser Int." );
-			        message.channel.send( "Resultado: " + parseInt( Math.random() * args[ 0 ] ) );
-			    } catch ( e ) {
-					k.special( message , message.member , e );
+			                message.channel.send( "Resultado: " + parseInt( Math.random() * args[ 0 ] ) );
+				} catch ( e ) {
+				    k.special( message , message.member , e );
 				}
 			}
 		} else {

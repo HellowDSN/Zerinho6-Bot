@@ -1,20 +1,20 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot, message , args ) => {
-		if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+	if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 	
         var Discord = require( "discord.js" );
 	    moment = require( "moment" );
 	    fs = require( "fs" ),
-		user = message.author,
-		k = require( "../comandos/avatar.js" ),
+	    user = message.author,
+	    k = require( "../comandos/avatar.js" ),
 	    files = fs.readdirSync( "./comandos/" ),
 	    embed = new Discord.RichEmbed(),
 	    frases = [ 
-		"Dia bom ou dia ruim, não deixa de ser um dia." , 
+	    "Dia bom ou dia ruim, não deixa de ser um dia." , 
 	    "Já botou uma tesoura na tomada? Eu já..não foi muito legal.",
 	    "Já ouvi falar que um humano pode ficar 2 meses sem comer, não sei se é verdade.",
-        "E3 2018 foi uma merda.",
+            "E3 2018 foi uma merda.",
 	    "Battlefield 5 não é Fortnite com grafico.",
 	    "Gosta de jogos em bits? Procure por Celeste, é legal :).",
 	    "Não copie o trabalho dos outros, aprenda com eles.",
@@ -37,19 +37,19 @@ module.exports = {
 		
         try {
 			if ( !args[ 0 ] ) {
-				embed.setAuthor( " - " + user.username , user.displayAvatarURL );
+			embed.setAuthor( " - " + user.username , user.displayAvatarURL );
 		        embed.setColor( message.member.displayHexColor );
 		        embed.setTimestamp();
 		        embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
 		        embed.setTitle( frases[ Math.floor( Math.random() * ( frases.length - 1 ) ) ] );
 		        embed.addField( ":scroll: | Comandos" , ("``" + files.join( ", " ) + "``").replace( /.js/gi, "" ) );
 		        embed.addField( ":pen_ballpoint: | Prefix aceitas" , "`" + config.prefixes.join( "` `" ) + "`" );
-				if ( message.guild.iconURL ) {
-					embed.setThumbnail( message.guild.iconURL );
-				}
-			    message.channel.send( embed );
+			if ( message.guild.iconURL ) {
+				embed.setThumbnail( message.guild.iconURL );
+			}
+			message.channel.send( embed );
 			} else if ( args[ 0 ] && files.find( s => args[ 0 ].toLowerCase().includes( s.replace( /.js/gi, "" ) ) ) ) {
-				var thing = require( `../comandos/${ args[ 0 ].toLowerCase() }.js` );
+			var thing = require( `../comandos/${ args[ 0 ].toLowerCase() }.js` );
 		        embed.setAuthor( user.username, user.diaplayAvatarURL );
 		        embed.setColor( message.member.displayHexColor );
 		        embed.setTimestamp();
@@ -57,18 +57,18 @@ module.exports = {
 		        embed.setImage( thing.photo );
 		        embed.setTitle( frases[ Math.floor( Math.random() * ( frases.length - 1 ) ) ] );
 		        embed.addField( ":book: | Descrição" , thing.description );
-                embed.addField( ":pencil: | Uso" , thing.use );
+                        embed.addField( ":pencil: | Uso" , thing.use );
 		        embed.addField( ":closed_lock_with_key: | Permissão necessaria", thing.permission ); 
 		        if ( message.guild.iconURL ) {
-					embed.setThumbnail( message.guild.iconURL );
-				}
-			    message.channel.send( embed );
-	        } else {
-		    message.reply( "Esse comando não existe.");
-	        }
-		} catch ( e ) {
-			k.special( message , message.member , e );
-		}
+				embed.setThumbnail( message.guild.iconURL );
+			}
+			message.channel.send( embed );
+			} else {
+				message.reply( "Esse comando não existe." );
+	                }
+	} catch ( e ) {
+		k.special( message , message.member , e );
+	}
 	},
 	description: "Mostra o manual de ajuda do comando ou os comandos do bot.",
 	photo: "https://i.imgur.com/71NcAOS.png",

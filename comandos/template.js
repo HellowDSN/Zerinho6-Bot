@@ -5,7 +5,7 @@ module.exports = {
 			try {
 				var fs = require( "fs" );
 				fs.readFile( `./template.js`, "utf8" , ( err , data ) => {
-					var Discord = require( "discord.js" ),
+				    var Discord = require( "discord.js" ),
 				    user = message.author,
 				    embed = new Discord.RichEmbed();
 				    embed.setAuthor( user.username, user.displayAvatarURL );
@@ -14,7 +14,7 @@ module.exports = {
 				    embed.setTimestamp();
 				    embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
 				    message.channel.send( embed );
-				})
+				});
 			} catch ( e ) {
 				var k = require( "../comandos/avatar.js" );
 				k.special( message , message.member , e );

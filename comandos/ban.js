@@ -11,10 +11,10 @@ module.exports = {
 								//Jezz, Odeio usar essa quantidade de "if" ~Zerinho6
 								try {
 									message.guild.ban( mencionado );
-                                    message.reply( "O usuario foi banido com sucesso." );									
+                                                                        message.reply( "O usuario foi banido com sucesso." );									
 								} catch ( e ) {
 									var k = require( "../comandos/avatar.js" );
-				                    k.special( message , message.member , e );
+				                                        k.special( message , message.member , e );
 								}
 							} else {
 								message.reply( "Você não pode banir o dono do servidor, ninguém pode. :joy: :ok_hand:" );

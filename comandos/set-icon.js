@@ -2,7 +2,7 @@ var config = require( "../config.json" );
 module.exports = {
 	run: ( bot, message , args ) => {
 		if ( !message.member.hasPermission( "MANAGE_GUILD" ) ) return message.reply( "Você precisa da permissão de gerenciar servidor para executar esse comando." );
-        if ( !message.guild.member( bot.user.id ).hasPermission( "MANAGE_GUILD" ) ) return message.reply( "Eu preciso da permissão de gerenciar servidor para executar esse comando." );
+                if ( !message.guild.member( bot.user.id ).hasPermission( "MANAGE_GUILD" ) ) return message.reply( "Eu preciso da permissão de gerenciar servidor para executar esse comando." );
 		var k = require( "../comandos/avatar.js" ),
 		Discord = require( "discord.js" ),
 		embed = new Discord.RichEmbed(),

@@ -1,7 +1,7 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot , message , args ) => {
-		if ( !message.member.hasPermission( "MANAGE_EMOJIS" ) ) return message.reply( "Você precisa da permissão de gerenciar emojis para executar esse comando." );
+	if ( !message.member.hasPermission( "MANAGE_EMOJIS" ) ) return message.reply( "Você precisa da permissão de gerenciar emojis para executar esse comando." );
         if ( !message.guild.member( bot.user.id ).hasPermission( "MANAGE_EMOJIS" ) ) return message.reply( "Eu preciso da permissão de gerenciar_emojis	para executar esse comando." );
 	  
 	    if ( args[ 0 ] ) {
@@ -9,10 +9,10 @@ module.exports = {
 				if ( message.attachments.size >= 1 ) {
 					var formatos = [ "png" , "jpg" , "gif" ],
 					k = require( "../comandos/avatar.js" ),
-				    emoji = message.attachments.first().url;
+				        emoji = message.attachments.first().url;
 					if ( formatos.find( s => emoji.endsWith( s ) ) ) {
 						try {
-							message.guild.createEmoji( emoji, args[ 0 ] );
+						    message.guild.createEmoji( emoji, args[ 0 ] );
 						    message.reply( "O emoji foi criado com sucesso. (se você não tiver usado espaços)" );
 					    } catch ( e ) {
 							if ( emoji.endsWith( formatos[ 0 ] ) || emoji.endsWith( formatos[ 1 ] ) ) {

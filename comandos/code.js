@@ -32,7 +32,7 @@ module.exports = {
 				message.reply( "Esse comando não existe" );
 			}
 		} else {
-			messsage.reply( "Que comando devo mostrar?" );
+			message.reply( "Que comando devo mostrar?" );
 		}
 	},
 	description: "Envia o codigo de X comando",

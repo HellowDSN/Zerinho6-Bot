@@ -17,7 +17,7 @@ fs.readdir( "./eventos/" , ( err, files ) => {
 
     files.forEach( ( file ) => {
         try{
-          bot.on( file.replace( /.js/gi, "" ) , require( "./eventos/" + file).run );
+          bot.on( file.replace( /.js/gi, "" ) , require( "./eventos/" + file ).run );
           console.log( chalk.green( file + " Carregado." ) );
         } catch( e ) {
           console.error( chalk.red( "Erro ao carregar o evento " + file , e ) );

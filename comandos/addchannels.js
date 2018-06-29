@@ -39,7 +39,7 @@ module.exports = {
             ( msg ) => {
                 message.reply( "Qual vai ser o nome do canal?" );
                 message.channel.awaitMessages( message.channel , { max: 1 , time: 10000, errors: [ "time" ] } ).then(c => {
-                    try {
+                    try { //WARNING!!! This part do not work! It makes the bot crash!
 		        message.guild.createChannel( c.first().content , "text" );
                         message.reply( "Canal criado." );
                     } catch ( e ) {

@@ -7,7 +7,7 @@ module.exports = {
 	    if ( args[ 0 ] ) {
 			if ( !isNaN( parseInt( args[ 0 ] ) ) ) {
 				var toDelete = parseInt( args[ 0 ] );
-				if ( toDelete.length < 3 ) {
+				if ( toDelete < 100 ) {
 					try {
 					    message.channel.bulkDelete( toDelete + 1 , true );
 					    toDelete === 1 ? message.channel.send( toDelete + " mensagem foi deletada." ) : message.channel.send( toDelete + " mensagens foram deletadas." ); 

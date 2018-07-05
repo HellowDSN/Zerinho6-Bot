@@ -1,45 +1,41 @@
 var config = require( "../config.json" );
 module.exports = {
 	run:( bot , message , args ) => {
-	if( !message.guild.member( bot.user.id ).hasPermission( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+		if ( !message.guild.member( bot.user.id ).hasPermission( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 	
-	    var Discord = require( "discord.js" ),
-	    embed = new Discord.RichEmbed(),
-	    user = message.author,
-	    k = require( "../comandos/avatar.js" ),	
-	    permissions = {
-		"EMBED_LINKS": "ping **|** help **|** eval **|** avatar **|** embed **|** userinfo **|** upload **|** code **|** serverinfo **|** poll **|** permissions-use **|** template **|** info **|** forkowner **|** bot-invite",
-	        "MANAGE_EMOJIS": "addemoji",
-		"MANAGE_CHANNELS": "addchannels",
-                "MANAGE_MESSAGES": "clear",
-		"BAN_MEMBERS": "ban",
-		"KICK_MEMBERS": "kick",
-		"MANAGE_GUILD": "set-explicit **|** set-icon **|** set-name"
-	    };
-	
-	    function check( perm ) { 
-		    var emote = message.channel.permissionsFor( bot.user.id ).has( perm ) ? ":white_check_mark: **|** " : ":x: **|** ";
-                    return emote + permissions[ perm ];
-	    };
-	
-	    
-	    embed.setAuthor( user.username, user.displayAvatarURL );
-	    embed.setTimestamp();
-	    embed.setColor( message.member.displayHexColor );
-	    embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-	    embed.setTitle( "Comandos que usam permissões especiais" );
-	    embed.addField( "EMBED_LINKS" , check( "EMBED_LINKS" ) , true );
-	    embed.addField( "MANAGE_EMOJIS" , check( "MANAGE_EMOJIS" ) , true );
-	    embed.addField( "MANAGE_CHANNELS" , check( "MANAGE_CHANNELS" ) , true );
-	    embed.addField( "MANAGE_MESSAGES" , check ( "MANAGE_MESSAGES" ) , true );
-	    embed.addField( "BAN_MEMBERS" , check( "BAN_MEMBERS" ) , true );
-	    embed.addField( "KICK_MEMBERS" , check( "KICK_MEMBERS" ) , true );
-	    embed.addField( "MANAGE_GUILD" , check( "MANAGE_GUILD" ) , true );
+		var Discord = require( "discord.js" ),
+		embed = new Discord.RichEmbed(),
+		user = message.author,
+		helper = require( "../helper.js" ),
+		permissions_array = [ "EMBED_LINKS" , "MANAGE_EMOJIS" , "MANAGE_CHANNELS" , "MANAGE_MESSAGES" , "BAN_MEMBERS" , "KICK_MEMBERS" , "MANAGE_GUILD" ],
+		permissions = {
+			"EMBED_LINKS": "ping **|** help **|** eval **|** avatar **|** embed **|** userinfo **|** upload **|** code **|** serverinfo **|** poll **|** permissions-use **|** template **|** info **|** forkowner **|** bot-invite",
+			"MANAGE_EMOJIS": "addemoji",
+			"MANAGE_CHANNELS": "addchannels",
+			"MANAGE_MESSAGES": "clear",		//Thanks to daviputary
+			"BAN_MEMBERS": "ban",
+			"KICK_MEMBERS": "kick",
+			"MANAGE_GUILD": "set-explicit **|** set-icon **|** set-name **|** set-verification"
+		};
+		
+		function check( perm ) { 
+			var emote = message.channel.permissionsFor( bot.user.id ).has( perm ) ? ":white_check_mark: **|** " : ":x: **|** ";
+			return emote + permissions[ perm ];
+		}
+		
+		embed.setAuthor( user.username, user.displayAvatarURL );
+		embed.setTimestamp();
+		embed.setColor( message.member.displayHexColor );
+		embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+		embed.setTitle( "Comandos que usam permissões especiais" );
+		for ( i = 0 ; i < permissions_array.length ; i++ ) {
+			embed.addField( permissions_array[ i ] , check( permissions_array[ i ] ) , true );
+		}
 	    embed.setDescription( "Os que tiverem com ':white_check_mark:' vão funcionar, já os que tiverem com ':x:'...não." );
 		try {
 			message.channel.send( embed );
 		} catch ( e ) {
-			k.special( message , message.member , e );		
+			helper.error_message( message , message.member , e );		
 	    }
 	},
 	description: "Mostra os comandos que usam X permissão e verifica se ele tem X permissão",

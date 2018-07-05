@@ -11,4 +11,4 @@ Requisitos: Node.js, Discord Bot account.
 
  - Servidor onde pode me encontrar: [Spotlight Brasil](http://www.google.com/)
  
- - Minha conta no Discord: Moru Zerinho6#6793
+ - Minha tag do Discord: Moru Zerinho6#6793

@@ -1,11 +1,12 @@
 var config = require( "../config.json" );
 module.exports = {
-	run: ( bot, message , args ) => {
-		if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
-		var k = require( "../comandos/avatar.js" ),
+	run: ( bot , message , args ) => {
+		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+		
+		var helper = require( "../helper.js" ),
 		Discord = require( "discord.js" ),
 		user = message.author,
-		SPELLCARD_DIVISION = message.content.split( " " ).slice( 1 ).join( " " ).split( " | " ); 
+		SPELLCARD_DIVISION = message.content.split( " " ).slice( 1 ).join( " " ).split( " | " ), 
 		embed = new Discord.RichEmbed();
 		
 		if ( SPELLCARD_DIVISION[ 0 ] && SPELLCARD_DIVISION[ 1 ] ) { //Eu tenho uns problemas ~zerinho6
@@ -19,7 +20,7 @@ module.exports = {
 					message.react( "👍" ).then( message.react( "👎" ) );
 				});
 			} catch ( e ) {
-				k.special( message , message.member , e );
+				helper.error_message( message , message.member , e );
 			}
 		} 
 	},

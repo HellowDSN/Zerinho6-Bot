@@ -1,11 +1,11 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot, message , args ) => {
-		var k = require( "../comandos/avatar.js" );
+		var helper = require( "../helper.js" );
 		try {
 			
 		} catch ( e ) {
-			k.special( message , message.member , e );
+			helper.error_message( message , message.member , e );
 		}
 	},
 	description: "Descrição do comando",

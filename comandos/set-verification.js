@@ -1,14 +1,11 @@
 var config = require( "../config.json" );
 module.exports = {
-	run: ( bot, message , args ) => {
-		var k = require( "../comandos/avatar.js" ),
+	run: ( bot , message , args ) => {
+		var helper = require( "../helper.js" ),
 		Discord = require( "discord.js" ),
 		embed = new Discord.RichEmbed(),
 		user = message.author,
 		level,
-		frases = [ 
-		"-**Nenhuma proteção.**" ,
-		"-**Necessário ter e-mail verificado**"],
 		images = [ "https://i.imgur.com/yi35I62.png",
 		"https://i.imgur.com/m0OCwj6.png",
 		"https://i.imgur.com/OApOrnO.png",
@@ -18,7 +15,10 @@ module.exports = {
 		"<:circulo_verde:428732952092999680>",
 		"<:circulo_amarelo:428733064605335573>",
 		"<:circulo_laranja:428733119399460865>",
-		"<:circulo_vermelho:428733167877226497>" ];
+		"<:circulo_vermelho:428733167877226497>" ],
+		frases = [ 
+		"-**Nenhuma proteção.**" ,
+		"-**Necessário ter e-mail verificado**" ];
 		frases[ 2 ] = frases[ 1 ] + "\n-**Precisa estar registrado no Discord por mais de 5 minutos**";
 		frases[ 3 ] = frases[ 2 ] + "\n-**Precisa estar no servidor por 10 minutos**";
 		frases[ 4 ] = frases[ 3 ] + "\n-**Precisa ter um numero de celular verificado na conta do Discord**";
@@ -39,7 +39,7 @@ module.exports = {
 					try {
 						message.channel.send( embed );
 					} catch ( e ) {
-						k.special( message , message.member , e );
+						helper.error_message( message , message.member , e );
 					}
 				} else {
 					message.reply( "Os niveis vão de 0 a 4. (Sim, comece a contar do 0, não de 1)" );

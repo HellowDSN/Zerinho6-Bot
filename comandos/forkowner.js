@@ -1,8 +1,9 @@
 var config = require( "../config.json" );
 module.exports = {
-	run: ( bot, message , args ) => {
+	run: ( bot , message , args ) => {
 		if ( !message.guild.member( bot.user.id ).hasPermission( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
-		var k = require( "../comandos/avatar.js" ),
+		
+		var helper = require( "../helper.js" ),
 		Discord = require( "discord.js" ),
 		embed = new Discord.RichEmbed(),
 		config = require( "../config.json" ),
@@ -31,7 +32,7 @@ module.exports = {
 		try {
 			message.channel.send( embed );
 		} catch ( e ) {
-			k.special( message , message.member , e );
+			helper.error_message( message , message.member , e );
 		}
 	},
 	description: "Informações sobre o dono da versão do zerinho6 bot",

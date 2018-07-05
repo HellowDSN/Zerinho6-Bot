@@ -1,12 +1,14 @@
 var config = require( "../config.json" );
 module.exports = {
-	run: ( bot, message , args ) => {
-		if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+	run: ( bot , message , args ) => {
+		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+		
 		if ( args[ 0 ] ) {
 			try {
 				var Discord = require( "discord.js" ),
 				user = message.author,
 				embed = new Discord.RichEmbed();
+				
 				embed.setAuthor( user.username, user.displayAvatarURL );
 				embed.addField( "** **" , args[ 0 ] );
 				embed.setColor( message.member.displayHexColor );
@@ -14,8 +16,8 @@ module.exports = {
 				embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
 				message.channel.send( embed );
 			} catch ( e ) {
-				var k = require( "../comandos/avatar.js" );
-				k.special( message , message.member , e );
+				var helper = require( "../helper.js" );
+				helper.error_message( message , message.member , e );
 			}
 		}
 	},

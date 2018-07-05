@@ -1,7 +1,9 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot, message , args ) => {
-		var mencionado = message.mentions.users.first();
+		var mencionado = message.mentions.users.first(),
+		helper = require( "../helper.js" );
+		
 		if ( message.guild.member( bot.user.id ).hasPermission( "BAN_MEMBERS" ) ) {
 			if ( message.member.hasPermission( "BAN_MEMBERS" ) ) {
 				if ( mencionado ) {
@@ -11,10 +13,9 @@ module.exports = {
 								//Jezz, Odeio usar essa quantidade de "if" ~Zerinho6
 								try {
 									message.guild.ban( mencionado );
-                                                                        message.reply( "O usuario foi banido com sucesso." );									
+									message.reply( "O usuario foi banido com sucesso." );									
 								} catch ( e ) {
-									var k = require( "../comandos/avatar.js" );
-				                                        k.special( message , message.member , e );
+									helper.error_message( message , message.member , e );
 								}
 							} else {
 								message.reply( "Você não pode banir o dono do servidor, ninguém pode. :joy: :ok_hand:" );

@@ -9,5 +9,6 @@ Requisitos: Node.js, Discord Bot account.
 
  - Você também precisa costumizar algumas coisas no ``config.json``, leia o ``LEIA ISSO.txt``.
 
- Servidor onde pode me encontrar: [Spotlight Brasil](http://www.google.com/)
- Minha conta no Discord: Moru Zerinho6#6793
+ - Servidor onde pode me encontrar: [Spotlight Brasil](http://www.google.com/)
+ 
+ - Minha conta no Discord: Moru Zerinho6#6793

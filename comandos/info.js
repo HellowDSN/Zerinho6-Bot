@@ -21,9 +21,9 @@ module.exports = {
 		embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
 		message.channel.send( embed ).then( message => {
 			endTime = Date.now();
-			ping = Math.round( endTime - startTime ),
-			FieldDescriptions = [ "<:online:313956277808005120> | Uptime" , "<:discord:314003252830011395> | Discord.js ver." , ":wrench: | NPM ver." , "<a:cursor:404001393360502805> | Servidores" , ":crown: | Bot Owner" ],
-			FieldComplements = [ helper.embed( hora + ":" + minutos + ":" + segundos , "JavaScript" ) , helper.embed( Discord.version , "JavaScript" ) , helper.embed( bot.guilds.size , "JavaScript" ) , helper.embed( config.discord_usertag , "JavaScript" ) , helper.embed( ping , "JavaScript" ) ];
+			ping = Math.round( endTime - startTime );
+			FieldDescriptions = [ "<:online:313956277808005120> | Uptime" , "<:discord:314003252830011395> | Discord.js ver." , ":wrench: | NPM ver." , "<a:cursor:404001393360502805> | Servidores" , ":crown: | Bot Owner" ];
+			FieldComplements = [ helper.embed( hora + ":" + minutos + ":" + segundos , "JavaScript" ) , helper.embed( Discord.version , "JavaScript" ) , helper.embed( process.version , "JavaScript" ) , helper.embed( bot.guilds.size , "JavaScript" ) , helper.embed( config.discord_usertag , "JavaScript" ) ];
 		
 			embed.setAuthor( user.username , user.displayAvatarURL );
 			embed.setTimestamp();

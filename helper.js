@@ -50,12 +50,12 @@ module.exports = {
 	},
 	error_message: function( mensagem , membro, error ) {
 		var Discord = require( "discord.js" ),
-	    embed = new Discord.RichEmbed();
+		embed = new Discord.RichEmbed();
 		embed.setColor( membro.displayHexColor ); 
-	    embed.setTitle( "Oh..um erro.");
-	    embed.addField( "Isso foi inesperado.", "```" + error + "```" );
-	    embed.setTimestamp();
-	    embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-	    mensagem.channel.send( embed );
+	        embed.setTitle( "Oh..um erro.");
+	        embed.addField( "Isso foi inesperado.", "```" + error + "```" );
+	        embed.setTimestamp();
+	        embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+	        mensagem.channel.send( embed );
 	}
 };

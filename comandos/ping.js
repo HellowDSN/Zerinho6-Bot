@@ -14,11 +14,7 @@ module.exports = {
 			var array = [ "<:circulo_vermelho:428733167877226497>" , "<:circulo_laranja:428733119399460865>" , "<:circulo_amarelo:428733064605335573>" , "<:circulo_verde:428732952092999680>" ],
 			pings = [ 3000 , 1500 , 250 , 120 ];
 			
-			for ( let i = 0 ; i < array.length ; i++ ) {
-				if ( ping > pings[ i ] ) {
-					return array[ i ];
-				}
-			}
+			return array[ pings.findIndex( p => ping =< p ) ];
 		}
 		
 		embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
@@ -41,10 +37,6 @@ module.exports = {
 		var array = [ "<:circulo_vermelho:428733167877226497>" , "<:circulo_laranja:428733119399460865>" , "<:circulo_amarelo:428733064605335573>" , "<:circulo_verde:428732952092999680>" ],
 		pings = [ 3000 , 1500 , 250 , 120 ];
 		
-		for ( let i = 0 ; i < array.length ; i++ ) {
-			if ( ping > pings[ i ] ) {
-				return array[ i ];
-			}
-		}
+		return array[ pings.findIndex( p => ping > p ) ];
 	}
 };

@@ -10,20 +10,23 @@ module.exports = {
 					var formatos = [ "png" , "jpg" , "gif" ],
 					helper = require( "../helper.js" ),
 					emoji = message.attachments.first().url;
-					
 					if ( formatos.find( s => emoji.endsWith( s ) ) ) {
-						try {
-							message.guild.createEmoji( emoji, args[ 0 ] );
-							message.reply( "O emoji foi criado com sucesso. (se você não tiver usado espaços)" );
-						} catch ( e ) {
-							if ( emoji.endsWith( formatos[ 0 ] ) || emoji.endsWith( formatos[ 1 ] ) ) {
-								message.reply( "O servidor provavelmente já tem 50 emojis normais, lembrando que os emojis devem ocupar menos de 260kb." );
-								helper.error_message( message , message.member , e );
-							} else {
-								message.reply ( "O servidor provavelmente já tem 50 emojis animados, lembrando que os emojis devem ocupar menos de 260kb.\nErro:" );
-								helper.error_message( message , message.member , e );
-							}						
-						}    
+						if ( emoji.filesize < 256000 ) {
+							try {
+								message.guild.createEmoji( emoji, args[ 0 ] );
+								message.reply( "O emoji foi criado com sucesso. (se você não tiver usado espaços)" );
+							} catch ( e ) {
+								if ( emoji.endsWith( formatos[ 0 ] ) || emoji.endsWith( formatos[ 1 ] ) ) {
+									message.reply( "O servidor provavelmente já tem 50 emojis normais." );
+									helper.error_message( message , message.member , e );
+								} else {
+									message.reply ( "O servidor provavelmente já tem 50 emojis animados." );
+									helper.error_message( message , message.member , e );
+								}						
+							}
+						} else {
+							message.reply( "O emoji pesa mais de 256000 bytes( ou pesa exatamente 256000), o discord não permite :/" );
+						}
 					} else {
 						message.reply( "Apenas são aceitos os formatos: " + formatos.join( " | " ) );
 					}

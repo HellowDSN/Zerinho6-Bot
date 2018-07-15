@@ -1,13 +1,17 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot , message , args ) => {
-		if ( args[ 0 ] ) {
+		var argument = message.content.split( " " ).slice( 1 ).join( " " );
+		
+		if ( argument ) {
 			try {
-				message.channel.send( args[ 0 ] );
+				message.channel.send( argument );
 			} catch ( e ) {
 				var helper = require( "../helper.js" );
 				helper.error_message( message , message.member , e );
 			}
+		} else {
+			message.reply( "O que diabos eu devo dizer?" );
 		}
 	},
 	description: "Faça o bot enviar a mensagem que você quiser.",

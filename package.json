@@ -1,6 +1,7 @@
 {
   "name": "Zerinho6 3.0",
   "version": "3.0.0",
+  "github": "https://github.com/zerinho6/Zerinho6-Bot",
   "description": "Zerinho6 Bot V3.0",
   "main": "bot.js",
   "scripts": {

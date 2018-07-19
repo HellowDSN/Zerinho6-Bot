@@ -45,7 +45,7 @@ module.exports = {
 			}
 		}
 	},
-	description: "Retorna um numero random inteiro de ate 100, mas você pode mudar o limite queira.",
+	description: "Retorna um numero random inteiro de ate 100, mas você pode mudar o limite caso queira.",
 	photo: "https://i.imgur.com/a6tQBXE.png",
 	permission: "Nenhuma permissão necessaria",
 	use: `${ config.prefixes[ 0 ] }random ou ${ config.prefixes[ 0 ] }random multiplicador maximo`

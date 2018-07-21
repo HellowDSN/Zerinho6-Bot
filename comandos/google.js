@@ -11,9 +11,8 @@ module.exports = {
 				var i = 0,
 				helper = require( "../helper.js" );
 				
-				if ( res.links[ i ] === undefined ) {
-					message.reply( "Sua pesquisa não teve resultados" );
-					return;
+				if ( e ) {
+					message.reply( "Ocorreu um erro.\n" + e );
 				}
 				
 				while ( res.links[ i ] === null ) {

@@ -1,8 +1,8 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot , message , args ) => {
-		var argument = message.content.split( " " ).slice( 1 ).join( " " ),
-		google = require( "google" );
+		var argument = message.content.split( " " ).slice( 1 ).join( " " );
+		const google = require( "google" );
 		
 		if ( argument ) {
 			
@@ -11,16 +11,18 @@ module.exports = {
 				var i = 0,
 				helper = require( "../helper.js" );
 				
-				if ( e ) {
-					message.reply( "Provavelmente sem resultados ou ocorreu um erro.\n" + e );
+				if ( res.links[ i ] === undefined ) {
+					message.reply( "Sua pesquisa não teve resultados" );
+					return;
 				}
 				
 				while ( res.links[ i ] === null ) {
 					i++
 				}
-				
+		
 				if ( res.links[ i ] === undefined ) {
 					message.reply( "Sua pesquisa não teve resultados" );
+					return;
 				}
 				
 				message.channel.send( "Resultado para " + helper.bold( argument ) + "\n\n" + res.links[ i ].title + "\n" + res.links[ i ].href );

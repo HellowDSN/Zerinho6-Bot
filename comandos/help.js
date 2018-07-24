@@ -2,11 +2,11 @@ var config = require( "../config.json" );
 module.exports = {
 	run: ( bot, message , args ) => {
 	if( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
-	
-        var Discord = require( "discord.js" );
+
+	    const Discord = require( "discord.js" );
 	    moment = require( "moment" );
-	    fs = require( "fs" ),
-	    user = message.author,
+	    fs = require( "fs" );
+	    var user = message.author,
 	    k = require( "../comandos/avatar.js" ),
 	    files = fs.readdirSync( "./comandos/" ),
 	    embed = new Discord.RichEmbed(),
@@ -35,40 +35,40 @@ module.exports = {
 	    "Todo mundo pode te desapontar um dia, isso é fato...mas quem escolhe o quanto isso vai te afetar é você ~Moru Zerinho6#6793",
 	    "O mundo é tão grande, mas enquanto você pensa sobre isso e não pensa sobre o como as coisas funcionam, você é excluido dele ~Moru Zerinho6#6793"];
 		
-        try {
+		try {
 			if ( !args[ 0 ] ) {
-			embed.setAuthor( " - " + user.username , user.displayAvatarURL );
-		        embed.setColor( message.member.displayHexColor );
-		        embed.setTimestamp();
-		        embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-		        embed.setTitle( frases[ Math.floor( Math.random() * ( frases.length - 1 ) ) ] );
-		        embed.addField( ":scroll: | Comandos" , ("``" + files.join( ", " ) + "``").replace( /.js/gi, "" ) );
-		        embed.addField( ":pen_ballpoint: | Prefix aceitas" , "`" + config.prefixes.join( "` `" ) + "`" );
-			if ( message.guild.iconURL ) {
-				embed.setThumbnail( message.guild.iconURL );
-			}
-			message.channel.send( embed );
+				embed.setAuthor( " - " + user.username , user.displayAvatarURL );
+				embed.setColor( message.member.displayHexColor );
+				embed.setTimestamp();
+				embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+				embed.setTitle( frases[ Math.floor( Math.random() * ( frases.length - 1 ) ) ] );
+				embed.addField( ":scroll: | Comandos" , ("``" + files.join( ", " ) + "``").replace( /.js/gi, "" ) );
+				embed.addField( ":pen_ballpoint: | Prefix aceitas" , "`" + config.prefixes.join( "` `" ) + "`" );
+				if ( message.guild.iconURL ) {
+					embed.setThumbnail( message.guild.iconURL );
+				}
+				message.channel.send( embed );
 			} else if ( args[ 0 ] && files.find( s => args[ 0 ].toLowerCase().includes( s.replace( /.js/gi, "" ) ) ) ) {
-			var thing = require( `../comandos/${ args[ 0 ].toLowerCase() }.js` );
-		        embed.setAuthor( user.username, user.diaplayAvatarURL );
-		        embed.setColor( message.member.displayHexColor );
-		        embed.setTimestamp();
-		        embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-		        embed.setImage( thing.photo );
-		        embed.setTitle( frases[ Math.floor( Math.random() * ( frases.length - 1 ) ) ] );
-		        embed.addField( ":book: | Descrição" , thing.description );
-                        embed.addField( ":pencil: | Uso" , thing.use );
-		        embed.addField( ":closed_lock_with_key: | Permissão necessaria", thing.permission ); 
-		        if ( message.guild.iconURL ) {
-				embed.setThumbnail( message.guild.iconURL );
-			}
-			message.channel.send( embed );
+				var thing = require( `../comandos/${ args[ 0 ].toLowerCase() }.js` );
+				embed.setAuthor( user.username, user.diaplayAvatarURL );
+				embed.setColor( message.member.displayHexColor );
+				embed.setTimestamp();
+				embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+				embed.setImage( thing.photo );
+				embed.setTitle( frases[ Math.floor( Math.random() * ( frases.length - 1 ) ) ] );
+				embed.addField( ":book: | Descrição" , thing.description );
+				embed.addField( ":pencil: | Uso" , thing.use );
+				embed.addField( ":closed_lock_with_key: | Permissão necessaria", thing.permission ); 
+				if ( message.guild.iconURL ) {
+					embed.setThumbnail( message.guild.iconURL );
+				}
+				message.channel.send( embed );
 			} else {
 				message.reply( "Esse comando não existe." );
 	                }
-	} catch ( e ) {
-		k.special( message , message.member , e );
-	}
+		} catch ( e ) {
+			k.special( message , message.member , e );
+		}
 	},
 	description: "Mostra o manual de ajuda do comando ou os comandos do bot.",
 	photo: "https://i.imgur.com/71NcAOS.png",

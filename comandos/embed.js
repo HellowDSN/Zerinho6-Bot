@@ -7,8 +7,8 @@ module.exports = {
 		
 		if ( argument ) {
 			try {
-				var Discord = require( "discord.js" ),
-				user = message.author,
+				const Discord = require( "discord.js" );
+				var user = message.author,
 				embed = new Discord.RichEmbed();
 				
 				embed.setAuthor( user.username, user.displayAvatarURL );

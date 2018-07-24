@@ -3,11 +3,11 @@ module.exports = {
 	run: ( bot , message , args ) => {
 		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 		
+		const Discord = require( "discord.js" ),
+		moment = require( "moment" );
 		var mention = message.mentions.users.first(),
 		user = mention ? mention : message.author,
-		Discord = require("discord.js"),
 		embed = new Discord.RichEmbed(),
-		moment = require( "moment" ),
 		helper = require( "../helper.js" ),
 		status = {
 			"online": "<:online:313956277808005120> **| On-line**",

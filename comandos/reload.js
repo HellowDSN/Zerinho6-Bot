@@ -1,8 +1,8 @@
 var config = require( "../config.json" );
 module.exports = {
 	run: ( bot , message , args ) => {
-		if( message.author.id === config.dono ) {
-			if( args[ 0 ] < 1 ) {
+		if ( message.author.id === config.dono ) {
+			if ( args[ 0 ] < 1 ) {
 				message.channel.send( "Ops, cade o nome do comando seu lezado?" ); 
 			} else {
 				try {

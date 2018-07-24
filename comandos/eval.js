@@ -4,8 +4,8 @@ module.exports = {
 		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 		if ( message.author.id !== config.dono ) return;
 		
-		var Discord = require( "discord.js" ),
-		helper = require( "../helper.js" ),
+		const Discord = require( "discord.js" );
+		var helper = require( "../helper.js" ),
 		code = message.content.split( " " ).slice( 1 ).join( " " ),
 		FieldDescriptions = [ "Codigo" , "typeof" , "Resultado" ],
 		FieldComplements = [ helper.embed( code , "JavaScript" ) , helper.embed( typeof( code ) , "JavaArray" ) , helper.embed( eval( code ) , "JavaScript" ) ],

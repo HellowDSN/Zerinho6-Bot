@@ -6,7 +6,7 @@ module.exports = {
 				message.channel.send( "Ops, cade o nome do comando seu lezado?" ); 
 			} else {
 				try {
-					delete require.cache[ require.resolve( `./${args[0]}.js` ) ];
+					delete require.cache[ require.resolve( `./${ args[ 0 ] }.js` ) ];
     	                                message.channel.send( "Comando resetado." ); 
 				} catch ( e ) {
 					var k = require( "../comandos/avatar.js" );

@@ -3,9 +3,9 @@ module.exports = {
 	run: ( bot , message , args ) => {
 		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 		
-		var fs = require( "fs" ),
-		files = fs.readdirSync( "./comandos/" ),
-		Discord = require( "discord.js" ),
+		const fs = require( "fs" ),
+		Discord = require( "discord.js" );
+		var files = fs.readdirSync( "./comandos/" ),
 		user = message.author,
 		helper = require( "../helper.js" ),
 		embed = new Discord.RichEmbed();

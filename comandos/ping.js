@@ -3,8 +3,8 @@ module.exports = {
 	run: ( bot , message , args ) => {
 		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 		
+		const Discord = require( "discord.js" );
 		var old = new Date(),
-		Discord = require( "discord.js" ),
 		user = message.author,
 		helper = require( "../helper.js" ),
 		now,

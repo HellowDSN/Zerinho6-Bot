@@ -3,13 +3,13 @@ module.exports = {
 	run: ( bot , message , args ) => {
 		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 		
+		const Discord = require( "discord.js" ),
+		imgur = require( "imgur" );
 		var formatos = [ "png" , "jpg" , "gif" ],
 		helper = require( "../helper.js" ),
 		to_upload = message.attachments,
 		user = message.author,
-		Discord = require( "discord.js" ),
-		embed = new Discord.RichEmbed(),
-		imgur = require( "imgur" );
+		embed = new Discord.RichEmbed();
 		
 		if ( to_upload.size >= 1 ) {
 			if ( formatos.find( s => to_upload.first().url.endsWith( s ) ) ) {

@@ -1,10 +1,10 @@
 "use strict";
-var Discord = require( "discord.js" ),
-bot = new Discord.Client(),
-config = require( "./config.json" ),
+const Discord = require( "discord.js" ),
 fs = require( "fs" ),
 moment = require( "moment" ),
 chalk = require( "chalk" );
+var bot = new Discord.Client(),
+config = require( "./config.json" );
 moment().format();
 moment.locale( "pt-BR" );
 console.log( moment.locale() );

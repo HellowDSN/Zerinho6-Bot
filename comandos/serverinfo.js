@@ -3,9 +3,9 @@ module.exports = {
     run: ( bot , message , args ) => {
 		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 		
-		var moment = require( "moment" ),
-		Discord = require( "discord.js" ),
-		helper = require( "../helper.js" ),
+		const moment = require( "moment" ),
+		Discord = require( "discord.js" );
+		var helper = require( "../helper.js" ),
 		embed = new Discord.RichEmbed(),
 		FieldDescriptions = [ "<a:cursor:404001393360502805> | Nome do servidor" , ":busts_in_silhouette: | Membros" , ":crown: | Dono" , "<:discord:314003252830011395> | ID" , ":earth_americas: | Região do servidor" , ":calendar_spiral: | Criado em" , ":clipboard: | Quantidade de cargos" ],
 		FieldComplements = [ message.guild.name , message.guild.memberCount , message.guild.owner.user.tag , message.guild.id , message.guild.region , moment( message.guild.createdAt ) , message.guild.roles.size ];

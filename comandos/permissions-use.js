@@ -3,8 +3,8 @@ module.exports = {
 	run:( bot , message , args ) => {
 		if ( !message.guild.member( bot.user.id ).hasPermission( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
 	
-		var Discord = require( "discord.js" ),
-		embed = new Discord.RichEmbed(),
+		const Discord = require( "discord.js" );
+		var embed = new Discord.RichEmbed(),
 		user = message.author,
 		helper = require( "../helper.js" ),
 		permissions_array = [ "EMBED_LINKS" , "MANAGE_EMOJIS" , "MANAGE_CHANNELS" , "MANAGE_MESSAGES" , "BAN_MEMBERS" , "KICK_MEMBERS" , "MANAGE_GUILD" ],
@@ -31,7 +31,7 @@ module.exports = {
 		for ( i = 0 ; i < permissions_array.length ; i++ ) {
 			embed.addField( permissions_array[ i ] , check( permissions_array[ i ] ) , true );
 		}
-	    embed.setDescription( "Os que tiverem com ':white_check_mark:' vão funcionar, já os que tiverem com ':x:'...não." );
+		embed.setDescription( "Os que tiverem com ':white_check_mark:' vão funcionar, já os que tiverem com ':x:'...não." );
 		try {
 			message.channel.send( embed );
 		} catch ( e ) {

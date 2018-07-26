@@ -27,6 +27,9 @@ module.exports = {
 				message.channel.send( "Resultado para " + helper.bold( argument ) + "\n\n" + res.links[ i ].title + "\n" + res.links[ i ].href );
 				
 			});
+			
+		} else {
+			message.reply( "Você não botou o que eu devo pesquisar :/" );
 		}
 	},
 	description: "Faz um pesquisa no google.",

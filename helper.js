@@ -57,5 +57,23 @@ module.exports = {
 	        embed.setTimestamp();
 	        embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
 	        mensagem.channel.send( embed );
+	},
+	checkURL: function( url , no_gif ) { //bote uma função para tirar o .gif 
+	
+		var the_regex = !no_gif ? /.(jpeg|jpg|png)$/ : /.(jpeg|jpg|gif|png)$/ ;
+		
+		return( url.match( the_regex ) != null );
+	},
+	get_image: function ( the_message ) {
+		var helper = require( "../helper.js" ),
+		argument = the_message.content.split( " " ).slice( 1 ).join( " " );
+		
+		if ( the_message.attachments.size >= 1 ) {
+			return the_message.attachments.first().url;
+		} else if ( helper.checkURL( argument , true ) ) {
+			return argument;
+		} else {
+			return false;
+		}
 	}
 };

@@ -1,37 +1,38 @@
-var config = require( "../config.json" );
 module.exports = {
-    run: ( bot , message , args ) => {
-		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
+    run: ( bot , message , args , language ) => {
 		
-		const moment = require( "moment" ),
+		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( language.Bot_need_permission + language.embed_links + language.ToExecute );
+		
+		const  moment = require( "moment" ),
 		Discord = require( "discord.js" );
 		var helper = require( "../helper.js" ),
+		database = require( "../database/languages.json" ),
+		DefinedLanguage = database[ message.guild.id ] ? database[ message.guild.id ].language : language.serverinfo_LanguageNotDefined,
 		embed = new Discord.RichEmbed(),
-		FieldDescriptions = [ "<a:cursor:404001393360502805> | Nome do servidor" , ":busts_in_silhouette: | Membros" , ":crown: | Dono" , "<:discord:314003252830011395> | ID" , ":earth_americas: | Região do servidor" , ":calendar_spiral: | Criado em" , ":clipboard: | Quantidade de cargos" ],
-		FieldComplements = [ message.guild.name , message.guild.memberCount , message.guild.owner.user.tag , message.guild.id , message.guild.region , moment( message.guild.createdAt ) , message.guild.roles.size ];
-		moment.locale( "pt-BR" );
+		FieldDescriptions = [ language.serverinfo_GuildName , language.serverinfo_Members , language.serverinfo_Owner , language.serverinfo_ID , language.serverinfo_GuildRegion , language.serverinfo_CreatedIn , language.serverinfo_AmountOfRoles , language.serverinfo_Language ],
+		FieldComplements = [ message.guild.name , message.guild.memberCount , message.guild.owner.user.tag , message.guild.id , message.guild.region , moment( message.guild.createdAt ) , message.guild.roles.size , DefinedLanguage ];
+		moment.locale( language.serverinfo_MomentLocale );
 		
 		if ( message.guild.iconURL ) {
 			embed.setAuthor( message.guild.name , message.guild.iconURL );
 			embed.setThumbnail( message.guild.iconURL );
 		} else {
-			embed.setAuthor( "Informações sobre " + message.guild.name );
+			embed.setAuthor( language.serverinfo_InformationsAbout + message.guild.name );
 		}
+
 		embed.setTimestamp();
-		embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-		embed.setColor( message.member.displayHexColor );
+		embed.setFooter( language.CreatedBy );
 		message.guild.fetchMembers();
-		for ( i = 0 ; i < FieldDescriptions.length ; i++ ) {
-			embed.addField( FieldDescriptions[ i ] , FieldComplements[ i ] , true );
+
+		for ( let i = 0 ; i < FieldDescriptions.length ; i++ ) {
+			embed.addField( FieldDescriptions[ i ] , helper.embed( FieldComplements[ i ] , "JavaScript" ) , true );
 		}
+
 		try {
 			message.channel.send( embed );
 		} catch ( e ) {
 			helper.error_message( message , message.member , e );
 		}
-	},
-	description: "Mostra algumas informações sobre o servidor.",
-	photo: "https://i.imgur.com/4pQAEHl.png",
-	permission: "Nenhuma informação necessaria",
-	use: `${ config.prefixes[ 0 ] }serverinfo`
+
+	}
 };

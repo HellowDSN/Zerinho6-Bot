@@ -1,21 +1,13 @@
-var config = require( "../config.json" );
 module.exports = {
-	run: ( bot , message , args ) => {
-		var argument = message.content.split( " " ).slice( 1 ).join( " " );
+	run: ( bot , message , args , language ) => {
+		var helper = require( "../helper.js" );
 		
-		if ( argument ) {
+		if ( args[ 0 ] ) {
 			try {
-				message.channel.send( argument );
+				message.channel.send( args[ 0 ] );
 			} catch ( e ) {
-				var helper = require( "../helper.js" );
 				helper.error_message( message , message.member , e );
-			}
-		} else {
-			message.reply( "O que diabos eu devo dizer?" );
-		}
-	},
-	description: "Faça o bot enviar a mensagem que você quiser.",
-	photo: "https://i.imgur.com/zC4IxAZ.png",
-	permission: "Nenhuma permissão necessaria",
-	use: `${ config.prefixes[ 0 ] }say mensagem`
+		    }
+	    }
+	}
 };

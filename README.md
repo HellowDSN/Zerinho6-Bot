@@ -5,7 +5,7 @@
 
 # EN
 
- You only need to: Install Node.js, open install.bat, put the Discord bot token/prefix and main language in config.json, then you are fine. :)
+ You only need to: Install Node.js, open install.cmd, put the Discord bot token/prefix and main language in config.json, then you are fine. :)
 
  ```JavaScript
  var My_Discord_Tag = "Moru Zerinho6#6793",
@@ -22,7 +22,7 @@
 # PT-BR
 
 
- Você só precisa: Instalar Node.js, abrir o install.bat por o token/prefixes/linguagem no config.json, e então tudo feito. :)
+ Você só precisa: Instalar Node.js, abrir o install.cmd, por o token/prefixes/linguagem no config.json, e então tudo feito. :)
 
  ```JavaScript
  var Minha_Discord_tag = "Moru Zerinho6#6793",

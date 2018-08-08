@@ -1,33 +1,28 @@
-var config = require( "../config.json" );
 module.exports = {
-	run: ( bot , message , args ) => {
-		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
-		
+	run: ( bot , message , args , language ) => {
+		if ( !message.channel.permissionsFor( bot.user.id ).has( "EMBED_LINKS" ) ) return message.reply( language.Bot_need_permission + language.embed_links + language.ToExecute );
+
 		var Discord = require( "discord.js" ),
 		embed = new Discord.RichEmbed(),
 		user = message.author;
-		
+
 		if ( args[ 0 ] ) {
 			if ( !isNaN( parseInt( args[ 0 ] ) ) ) {
 				if ( args[ 0 ].length === 18 ) {
 					embed.setAuthor( user.username , user.displayAvatarURL );
 					embed.setTimestamp();
-					embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+					embed.setFooter( language );
 					embed.setColor( message.member.displayHexColor );
-					embed.addField( ":link: | Link" , "https://discordapp.com/oauth2/authorize?&client_id=" + args[ 0 ] + "&scope=bot" );
+					embed.addField( language.botinvite_link , "https://discordapp.com/oauth2/authorize?&client_id=" + args[ 0 ] + "&scope=bot" );
 					message.channel.send( embed );
 				} else {
-					message.reply( "Um ID tem 18 caracteres, eu sei diferenciar" );
+					message.reply( language.botinvite_InvalidID );
 				}
 		 	} else {
-				message.reply( "Isso não é um numero, não é um ID." );
+				message.reply( language.botinvite_NaN );
 			}
 		} else {
-			message.reply( "Preciso do ID do bot." );
+			message.reply( language.botinvite_NoArgs );
 		}
-	},
-	description: "Cria o link de convite de um bot especificado",
-	photo: "Link da imagem",
-	permission: "Nenhuma permissão necessaria",
-	use: `${ config.prefixes[ 0 ] }bot-invite ID`
+	}
 };

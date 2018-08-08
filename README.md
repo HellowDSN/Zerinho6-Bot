@@ -19,7 +19,7 @@
  ];
 ```
 
-#PT-BR
+# PT-BR
 
 
  Você só precisa: Instalar Node.js, abrir o install.bat por o token/prefixes/linguagem no config.json, e então tudo feito. :)

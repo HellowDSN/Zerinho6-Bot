@@ -1,24 +1,21 @@
-var config = require( "../config.json" );
 module.exports = {
-	run: ( bot , message , args ) => {
+	run: ( bot , message , args , language ) => {
+		var helper = require( "../helper.js" ),
+		config = require( "../config.json" );
+
 		if ( message.author.id === config.dono ) {
-			if ( args[ 0 ] < 1 ) {
-				message.channel.send( "Ops, cade o nome do comando seu lezado?" ); 
+			if ( !args[ 0 ] ) {
+				message.channel.send( language.random_NoArgs );
 			} else {
 				try {
-					delete require.cache[ require.resolve( `./${ args[ 0 ] }.js` ) ];
-    	                                message.channel.send( "Comando resetado." ); 
+					delete require.cache[ require.resolve( `./${ args[ 0 ] }.js` ) ]
+					message.channel.send( language.reload_CommandReseted );
 				} catch ( e ) {
-					var k = require( "../comandos/avatar.js" );
-					k.special( message , message.member , e );
+					helper.error_message( message , message.member , e );
 				}
 			}
 		} else {
-			message.channel.send( "Este comando é privado, para saber quando um comando é privado ou precisa de uma permissão adicional de cargo, execute **" + config.prefixes[ 0 ] + "comando**" );
+			message.channel.send( language.reload_notOwner );
 		}
-	},
-	description: "Recarrega um comando.",
-	photo: "https://i.imgur.com/gK6S7VH.png",
-	permission: "Bot Owner",
-	use: `${ config.prefixes[ 0 ] }reload comando`
+	}
 };

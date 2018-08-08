@@ -1,45 +1,41 @@
-var config = require( "../config.json" );
 module.exports = {
-	run:( bot , message , args ) => {
-		if ( !message.guild.member( bot.user.id ).hasPermission( "EMBED_LINKS" ) ) return message.reply( "Eu preciso da permissão de embed_links para executar esse comando." );
-	
+	run:( bot , message , args , language ) => {
+		if ( !message.guild.member( bot.user.id ).hasPermission( "EMBED_LINKS" ) ) return message.reply( language.Bot_need_permission + language.embed_links + language.ToExecute );
+
 		const Discord = require( "discord.js" );
 		var embed = new Discord.RichEmbed(),
 		user = message.author,
 		helper = require( "../helper.js" ),
-		permissions_array = [ "EMBED_LINKS" , "MANAGE_EMOJIS" , "MANAGE_CHANNELS" , "MANAGE_MESSAGES" , "BAN_MEMBERS" , "KICK_MEMBERS" , "MANAGE_GUILD" ],
+		permissions_array = [ language.embed_links , language.manage_emojis , language.manage_channels , language.manage_messages , language.ban_members , language.kick_members , language.manage_guild ],
 		permissions = {
-			"EMBED_LINKS": "ping **|** help **|** eval **|** avatar **|** embed **|** userinfo **|** upload **|** code **|** serverinfo **|** poll **|** permissions-use **|** template **|** info **|** forkowner **|** bot-invite",
-			"MANAGE_EMOJIS": "addemoji",
-			"MANAGE_CHANNELS": "addchannels",
-			"MANAGE_MESSAGES": "clear",		//Thanks to daviputary
-			"BAN_MEMBERS": "ban",
-			"KICK_MEMBERS": "kick",
-			"MANAGE_GUILD": "set-explicit **|** set-icon **|** set-name **|** set-verification"
+			"EMBED_LINKS": language.permissionsUse_embedLinks_commands,
+			"MANAGE_EMOJIS": language.permissionsUse_manageEmojis_commands,
+			"MANAGE_MESSAGES": language.permissionsUse_manageMessages_commands,		//Thanks to daviputary
+			"BAN_MEMBERS": language.permissionsUse_banMembers_commands,
+			"KICK_MEMBERS": language.permissionsUse_kickMembers_commands,
+			"MANAGE_GUILD": language.permissionsUse_manageGuild_commands
 		};
-		
-		function check( perm ) { 
-			var emote = message.channel.permissionsFor( bot.user.id ).has( perm ) ? ":white_check_mark: **|** " : ":x: **|** ";
+
+		function check( perm ) {
+			var emote = message.channel.permissionsFor( bot.user.id ).has( perm ) ? language.permissionsUse_emote_true : language.permissionsUse_emote_false;
 			return emote + permissions[ perm ];
 		}
-		
+
 		embed.setAuthor( user.username, user.displayAvatarURL );
 		embed.setTimestamp();
 		embed.setColor( message.member.displayHexColor );
-		embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
-		embed.setTitle( "Comandos que usam permissões especiais" );
-		for ( i = 0 ; i < permissions_array.length ; i++ ) {
+		embed.setFooter( language.CreatedBy );
+		embed.setTitle( language.permissionsUse_CommandsThatUseSpecialPermissions );
+		
+		for ( var i = 0 ; i < permissions_array.length ; i++ ) {
 			embed.addField( permissions_array[ i ] , check( permissions_array[ i ] ) , true );
 		}
-		embed.setDescription( "Os que tiverem com ':white_check_mark:' vão funcionar, já os que tiverem com ':x:'...não." );
+		
+	    embed.setDescription( language.permissionsUse_DescriptionExplanation );
 		try {
 			message.channel.send( embed );
 		} catch ( e ) {
-			helper.error_message( message , message.member , e );		
-	    }
-	},
-	description: "Mostra os comandos que usam X permissão e verifica se ele tem X permissão",
-	photo: "https://i.imgur.com/8WzQN7I.png",
-	permission: "EMBED_LINKS",
-	use: `${ config.prefixes[ 0 ] }permissions-use`
+			helper.error_message( message , message.member , e );
+		}
+	}
 };

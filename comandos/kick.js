@@ -1,6 +1,5 @@
-var config = require( "../config.json" );
 module.exports = {
-	run: ( bot, message , args ) => {
+	run: ( bot, message , args , language ) => {
 		var mencionado = message.mentions.users.first(),
 		helper = require( "../helper.js" );
 		if ( message.guild.member( bot.user.id ).hasPermission( "KICK_MEMBERS" ) ) {
@@ -12,31 +11,27 @@ module.exports = {
 								//Jezz, Odeio usar essa quantidade de "if" ~Zerinho6
 								try {
 									message.guild.member( mencionado ).kick( mencionado );
-									message.reply( "O usuario foi kickado com sucesso." );
+									message.reply( language.kick_user_kicked );
 								} catch ( e ) {
 									helper.error_message( message , message.member , e );
 								}
-							} else {
-								message.reply( "Você não pode kickar o dono do servidor, ninguém pode. :joy: :ok_hand:" );
+							} else { //Jesus Crist, i should use switch & case.
+								message.reply( language.kick_isOwner );
 							}
 						} else {
-							message.reply( "O membro que você está tentando kickar tem um cargo cuja a posição dele está acima do seu 'maior cargo'." );
+							message.reply( language.kick_user_HaveHighterRole );
 						}
 					} else {
-						message.reply( "O membro que você está tentando kickar tem um cargo cuja a posição dele está acima do meu 'maior cargo'." );
+						message.reply( language.kick_user_HaveHighterRoleThanBot );
 					}
 				} else {
-					message.reply( "Mencione o membro que deve ser kickar." );
+					message.reply( language.kick_noMention );
 				}
 			} else {
-				message.reply( "Você não tem a permissão de kickar membros." );
+				message.reply( language.kick_noPermission );
 			}
 		} else {
-			message.reply( "Eu não tenho a permissão de kickar membros. :/" );
+			message.reply( language.kick_BotnoPermission );
 		}
-	},
-	description: "kicka o membro mencionado",
-	photo: "https://i.imgur.com/ISEJPYr.png",
-	permission: "KICK_MEMBERS",
-	use: `${ config.prefixes[ 0 ] }kick @usuario`
+	}
 };

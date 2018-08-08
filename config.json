@@ -6,6 +6,7 @@
    "premium": [ "First Premium user" , "Second premium user" ],
    "bot_name": "The Bot Tag",
    "personal": "yes",
+   "language": "en",
    "discord_usertag": "Your Discord Tag",
    "BIO": "Tell something about you!",
    "BIO_AVATAR": "Put the classic anime avatar or any image here",

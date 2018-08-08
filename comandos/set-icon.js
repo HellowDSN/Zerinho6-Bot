@@ -1,39 +1,29 @@
-var config = require( "../config.json" );
 module.exports = {
-	run: ( bot , message , args ) => {
-		if ( !message.member.hasPermission( "MANAGE_GUILD" ) ) return message.reply( "Você precisa da permissão de gerenciar servidor para executar esse comando." );
-		if ( !message.guild.member( bot.user.id ).hasPermission( "MANAGE_GUILD" ) ) return message.reply( "Eu preciso da permissão de gerenciar servidor para executar esse comando." );
+	run: ( bot , message , args , language ) => {
+		if ( !message.member.hasPermission( "MANAGE_GUILD" ) ) return message.reply( language.User_need_permission + language.manage_guild + language.ToExecute );
+		if ( !message.guild.member( bot.user.id ).hasPermission( "MANAGE_GUILD" ) ) return message.reply( language.Bot_need_permission + language.manage_guild + language.ToExecute );
 		
+		const Discord = require( "discord.js" );
 		var helper = require( "../helper.js" ),
-		Discord = require( "discord.js" ),
 		embed = new Discord.RichEmbed(),
-		user = message.author,
-		formatos = [ "png" , "jpg" , "gif" ],
-		imagem = message.attachments;
-		
-		if ( imagem.size >= 1 ) {
-			if ( formatos.find( s => imagem.first().url.endsWith( s ) ) ) {
+		user = message.author;
+
+		if ( helper.get_image( message , true ) ) {
+			var imagem = helper.get_image( message , false );
 				try {
-					message.guild.setIcon( imagem.first().url );
+					message.guild.setIcon( imagem );
 					embed.setAuthor( user.username , user.displayAvatarURL );
 					embed.setTimestamp();
 					embed.setColor( message.member.displayHexColor );
-					embed.setThumbnail( imagem.first().url );
-					embed.setTitle( "O icone do servidor foi alterado." );
-					embed.setFooter( "Zerinho6 Bot™ criado por Moru Zerinho6#6793" );
+					embed.setThumbnail( imagem );
+					embed.setTitle( language.setIcon_IconChanged );
+					embed.setFooter( language.CreatedBy );
 					message.channel.send( embed );
 				} catch ( e ) {
 					helper.error_message( message , message.member , e );
 				}
-			} else {
-				message.reply( "Apenas são aceitos os formatos: " + formatos.join( " | " ) + "." );
-			}
 		} else {
-			message.reply( "Você deve enviar a imagem que vai ser feita de icone do servidor." );
+			message.reply( language.setIcon_NoImage );
 		}
-	},
-	description: "Altera o icone do servidor.",
-	photo: "https://i.imgur.com/z2Ex7Ch.png",
-	permission: "MANAGE_GUILD",
-	use: `${ config.prefixes[ 0 ] }set-icon (envie a imagem que vai ser feita de icone do servidor)`
+	}
 };

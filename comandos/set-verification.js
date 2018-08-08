@@ -1,35 +1,43 @@
-var config = require( "../config.json" );
 module.exports = {
-	run: ( bot , message , args ) => {
+	run: ( bot , message , args , language ) => {
+
+		if ( !message.member.hasPermission( "MANAGE_GUILD" ) ) return message.reply( language.User_need_permission + language.manage_guild + language.ToExecute );
+		if ( !message.guild.member( bot.user.id ).hasPermission( "MANAGE_GUILD" ) ) return message.reply( language.Bot_need_permission + language.manage_guild + language.ToExecute );
+
 		var helper = require( "../helper.js" ),
 		Discord = require( "discord.js" ),
 		embed = new Discord.RichEmbed(),
 		user = message.author,
 		level,
-		images = [ "https://i.imgur.com/yi35I62.png",
-		"https://i.imgur.com/m0OCwj6.png",
-		"https://i.imgur.com/OApOrnO.png",
-		"https://i.imgur.com/YYNQm0X.png",
-		"https://i.imgur.com/c9az8BF.png" ],
-		circulos = [ "<:circulo_branco:428733018622918689>",
-		"<:circulo_verde:428732952092999680>",
-		"<:circulo_amarelo:428733064605335573>",
-		"<:circulo_laranja:428733119399460865>",
-		"<:circulo_vermelho:428733167877226497>" ],
-		frases = [ 
-		"-**Nenhuma proteção.**" ,
-		"-**Necessário ter e-mail verificado**" ];
-		frases[ 2 ] = frases[ 1 ] + "\n-**Precisa estar registrado no Discord por mais de 5 minutos**";
-		frases[ 3 ] = frases[ 2 ] + "\n-**Precisa estar no servidor por 10 minutos**";
-		frases[ 4 ] = frases[ 3 ] + "\n-**Precisa ter um numero de celular verificado na conta do Discord**";
-		
+		images = [
+			language.setVerification_Images ,
+			language.setVerification_Images2 ,
+			language.setVerification_Images3 ,
+			language.setVerification_Images4 ,
+			language.setVerification_Images5
+		],
+		circulos = [
+			language.setVerification_cicles ,
+			language.setVerification_cicles2 ,
+			language.setVerification_cicles3 ,
+			language.setVerification_cicles4 ,
+			language.setVerification_cicles5
+		],
+		frases = [
+			language.setVerification_phrases ,
+			language.setVerification_phrases2
+		];
+		frases[ 2 ] = frases[ 1 ] + language.setVerification_phrases3;
+		frases[ 3 ] = frases[ 2 ] + language.setVerification_phrases4;
+		frases[ 4 ] = frases[ 3 ] + language.setVerification_phrases5;
+
 		if ( args[ 0 ] ) {
 			level = parseInt( args[ 0 ] );
 			if ( !isNaN( level ) ) {
 				if ( 5 > level ) {
 					message.guild.setVerificationLevel( level );
 					embed.setAuthor( user.username , user.displayAvatarURL );
-					embed.setTitle( "O nivel de segurança foi definido para:" );
+					embed.setTitle( language.setVerification_TheSecurityLevelHasBeenSetTo );
 					embed.setDescription( circulos[ level ] + " | " + frases[ level ] );
 					embed.setImage( images[ level ] );
 					embed.setColor( message.member.displayHexColor );
@@ -42,17 +50,13 @@ module.exports = {
 						helper.error_message( message , message.member , e );
 					}
 				} else {
-					message.reply( "Os niveis vão de 0 a 4. (Sim, comece a contar do 0, não de 1)" );
+					message.reply( language.setVerification_TheLevelsGoesFrom );
 				}
 			} else {
-				message.reply( "O nivel deve ser em numero (de 0 a 4 ) " );
+				message.reply( language.setVerification_TheLevelMustBeANumber );
 			}
 		} else {
-			message.reply( "Você não botou o nivel que vai ser utilizado" );
+			message.reply( language.NoArgs );
 		}
-	},
-	description: "Edita o nivel de verificação do servidor",
-	photo: "Link da imagem",
-	permission: "MANAGE_GUILD",
-	use: `${ config.prefixes[ 0 ] }set-verification nivel( de 0  a 4 )`
+	}
 };
